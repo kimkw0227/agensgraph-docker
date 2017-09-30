@@ -6,6 +6,9 @@ RUN apk update && \
     adduser -D agraph && \
     rm -r  /var/cache/apk/* 
 
+COPY entrypoint.sh /home/agraph/entrypoint.sh
+RUN ["chown", "agraph:agraph", "/home/agraph/entrypoint.sh"]
+
 USER agraph
 WORKDIR /home/agraph/
 
@@ -14,9 +17,6 @@ ENV AGDATA=/home/agraph/data \
     LD_LIBRARY_PATH=/home/agraph/agensgraph/lib:$LD_LIBRARY_PATH
 	
 ADD agensgraph-alpine.tar.gz /home/agraph/
-
-COPY entrypoint.sh /home/agraph/entrypoint.sh
-RUN ["chmod", "+x", "/home/agraph/docker-entrypoint.sh"]
 
 RUN initdb && ag_ctl -w start && createdb && agens -c 'CREATE GRAPH docker_graph' && ag_ctl stop && chmod +x /home/agraph/entrypoint.sh
 
