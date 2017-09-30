@@ -1,7 +1,18 @@
-docker build -t kimkw0227/agensgraph:1.2 -t kimkw0227/agensgraph:latest .
+This image has been created to help users to use AgensGraph with an ease.
+Currently, the image with latest tag contains AgensGraph v.1.2 Community Version.
 
-docker run -d -p 5432:5432 -p 8085:8085 --name hello_agraph kimkw0227/agensgraph agens-graph
+# Supported Tags
+* AgensGraph w/ CentOS 7.3: **1.2**, **latest**
 
-docker exec -it hello_agraph /bin/bash
+# How To Use: AgensGraph 1.2
+1) To run AgensGraph container:  
 
-docker exec -it hello_agraph agens
+=> docker run -d -p 5432:5432 -p 8085:8085 kimkw0227/agensgraph agens-graph 
+
+2) To access the container via bash: 
+
+=> docker exec -it [YOUR.CONTAINER.NAME.HERE] /bin/bash 
+
+3) To access the container via agens shell: 
+
+=> docker exec -it [YOUR.CONTAINER.NAME.HERE] agens 
