@@ -6,8 +6,8 @@ RUN apk update && \
     adduser -D agraph && \
     rm -r  /var/cache/apk/* 
 
-COPY entrypoint.sh /home/agraph/entrypoint.sh
-RUN ["chown", "agraph:agraph", "/home/agraph/entrypoint.sh"]
+COPY entrypoint.sh /usr/local/bin/
+RUN ln -s /usr/local/bin/docker-entrypoint.sh /
 
 USER agraph
 WORKDIR /home/agraph/
@@ -24,4 +24,4 @@ VOLUME ["/home/agraph/data"]
 
 EXPOSE 5432 
 
-ENTRYPOINT ["/home/agraph/entrypoint.sh"]
+ENTRYPOINT ["docker-entrypoint.sh"]

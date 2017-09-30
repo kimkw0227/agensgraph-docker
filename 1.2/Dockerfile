@@ -4,8 +4,9 @@ MAINTAINER KingKwan <kmkim@bitnine.net>
 RUN yum -y install util-linux && useradd agraph && yum clean all
 ADD AgensGraph-v1.2.0_linux.tar.gz /home/agraph/
 
-COPY entrypoint.sh /home/agraph/entrypoint.sh
-RUN ["chown", "agraph:agraph", "/home/agraph/entrypoint.sh"]
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN ln -s /usr/local/bindocker-entrypoint.sh /
+
 
 USER agraph
 WORKDIR /home/agraph
@@ -20,4 +21,4 @@ VOLUME ["/home/agraph/data"]
 
 EXPOSE 5432
 
-ENTRYPOINT ["/home/agraph/entrypoint.sh"]
+ENTRYPOINT ["docker-entrypoint.sh"]
