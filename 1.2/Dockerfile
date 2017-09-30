@@ -8,12 +8,13 @@ USER agraph
 WORKDIR /home/agraph
 
 COPY entrypoint.sh /home/agraph/entrypoint.sh
+RUN ["chmod", "+x", "/home/agraph/entrypoint.sh"]
 
 ENV AGDATA=/home/agraph/data \
     PATH=/home/agraph/AgensGraph/bin:$PATH \
     LD_LIBRARY_PATH=/home/agraph/AgensGraph/lib:$LD_LIBRARY_PATH
 
-RUN initdb && ag_ctl -w start && createdb && agens -c 'CREATE GRAPH docker_graph' && ag_ctl stop && chmod +x /home/agraph/entrypoint.sh
+RUN initdb && ag_ctl -w start && createdb && agens -c 'CREATE GRAPH docker_graph' && ag_ctl stop 
 
 VOLUME ["/home/agraph/data"]
 
