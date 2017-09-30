@@ -5,7 +5,7 @@ RUN yum -y install util-linux && useradd agraph && yum clean all
 ADD AgensGraph-v1.2.0_linux.tar.gz /home/agraph/
 
 COPY docker-entrypoint.sh /usr/local/bin/
-RUN ln -s /usr/local/bindocker-entrypoint.sh /
+RUN ln -s /usr/local/bin/docker-entrypoint.sh /
 
 
 USER agraph
