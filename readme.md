@@ -8,15 +8,11 @@ Currently, the image with latest tag contains AgensGraph v.1.2 Community Version
 # How To Use: AgensGraph 1.2
 1) To run AgensGraph container:  
 
-   => docker run -d -p 5432:5432 kimkw0227/agensgraph-docker agens-graph 
+   => docker run -d -p 5432:5432 kimkw0227/agensgraph-docker 
 
-2) To access the container via bash: 
+2) To access the container via agens shell: 
 
-   => docker exec -it [YOUR.CONTAINER.NAME.HERE] /bin/bash 
-
-3) To access the container via agens shell: 
-
-   => docker exec -it [YOUR.CONTAINER.NAME.HERE] agens 
+   => docker exec -it [YOUR.CONTAINER.NAME.HERE] agens -u agraph
 
 # Quick Reference
 * AgensGraph Quick Guide: http://bitnine.net/support/documents_backup/quick-start-guide-html/
