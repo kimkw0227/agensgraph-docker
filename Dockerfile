@@ -1,9 +1,8 @@
 FROM centos:7.3.1611 
 MAINTAINER KingKwan <kmkim@bitnine.net>
 
-RUN yum -y install util-linux java-1.8.0-openjdk.x86_64 && useradd agraph && yum clean all
+RUN yum -y install util-linux && useradd agraph && yum clean all
 ADD AgensGraph-v1.2.0_linux.tar.gz /home/agraph/
-COPY browser /home/agraph/browser/
 
 USER agraph
 WORKDIR /home/agraph
@@ -18,6 +17,6 @@ VOLUME ["/home/agraph/data"]
 
 COPY entrypoint.sh /home/agraph/entrypoint.sh
 
-EXPOSE 5432 8085
+EXPOSE 5432
 
 ENTRYPOINT ["/home/agraph/entrypoint.sh"]
