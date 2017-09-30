@@ -23,4 +23,4 @@ VOLUME ["/home/agraph/data"]
 
 EXPOSE 5432 
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["/home/agraph/docker-entrypoint.sh"]
