@@ -24,12 +24,12 @@ ENV GOSU_VERSION=1.20 \
     PATH=/agens-graph/AgensGraph/bin:$PATH \
     LD_LIBRARY_PATH=/agens-graph/AgensGraph/lib:$LD_LIBRARY_PATH
 
-COPY agens-graph /agens-graph/AgensGraph/bin
+COPY agens-graph /usr/local/bin/
 COPY docker-entrypoint.sh /
 
 RUN mkdir /docker-entrypoint-initdb.d && \
     chmod +x docker-entrypoint.sh && \
-    chmod +x /agens-graph/AgensGraph/bin/agens-graph
+    chmod +x /usr/local/bin/agens-graph
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 

@@ -22,5 +22,3 @@ RUN initdb && ag_ctl -w start && createdb && agens -c 'CREATE GRAPH docker_graph
 VOLUME ["/home/agraph/data"]
 
 EXPOSE 5432 
-
-ENTRYPOINT ["/home/agraph/docker-entrypoint.sh"]
