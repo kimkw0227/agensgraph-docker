@@ -6,7 +6,7 @@ RUN apk update && \
     adduser -D agraph && \
     rm -r  /var/cache/apk/* 
 
-COPY entrypoint.sh /usr/local/bin/
+COPY docker-entrypoint.sh /usr/local/bin/
 RUN ln -s /usr/local/bin/docker-entrypoint.sh /
 
 USER agraph
