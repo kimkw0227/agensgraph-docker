@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 imagename="kimkw0227/agensgraph-docker"
 tag="1.2.0"
 
@@ -33,3 +34,5 @@ function runSh(){
 }
 
 main
+
+exec "$@"

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 imagename="kimkw0227/agensgraph"
 tag="1.2.0"
 
@@ -33,3 +34,5 @@ function runBash(){
 }
 
 main
+
+exec "$@"
