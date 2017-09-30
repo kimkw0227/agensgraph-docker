@@ -12,7 +12,7 @@ Currently, the image with latest tag contains AgensGraph v.1.2 Community Version
 
 2) To access the container via agens shell: 
 
-   => docker exec -it [YOUR.CONTAINER.NAME.HERE] agens -u agraph
+   => docker exec -it [YOUR.CONTAINER.NAME.HERE] agens -U agraph
 
 # Quick Reference
 * AgensGraph Quick Guide: http://bitnine.net/support/documents_backup/quick-start-guide-html/
