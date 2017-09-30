@@ -3,6 +3,7 @@ Currently, the image with latest tag contains AgensGraph v.1.2 Community Version
 
 # Supported Tags
 * AgensGraph w/ CentOS 7.3: **1.2**, **latest**
+* AgensGraph w/ Alpine Linux 3.6(Slim version): **1.2-slim**
 
 # How To Use: AgensGraph 1.2
 1) To run AgensGraph container:  
