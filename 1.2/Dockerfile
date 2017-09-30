@@ -1,21 +1,37 @@
 FROM centos:7.3.1611 
 MAINTAINER KingKwan <kmkim@bitnine.net>
 
-RUN yum -y install util-linux && useradd agraph && yum clean all
-VOLUME ["/home/agraph/"]
+RUN yum -y install util-linux && \
+    groupadd -r agraph --gid=9999 && \
+    useradd -r -g agraph --uid=9999 agraph && \ 
+    yum clean all && \
+    gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 && \
+    curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.2/gosu-amd64" && \
+    curl -o /usr/local/bin/gosu.asc -SL "https://github.com/tianon/gosu/releases/download/1.2/gosu-amd64.asc" && \
+    gpg --verify /usr/local/bin/gosu.asc && \
+    rm -f /usr/local/bin/gosu.asc && \
+    rm -rf /root/.gnupg/ && \
+    chmod +x /usr/local/bin/gosu && \
+    mkdir -p /agens-graph && \
+    chown -Rf agraph /agens-graph    
 
-ADD AgensGraph-v1.2.0_linux.tar.gz /home/agraph/
+VOLUME ["/agens-graph"]
 
-USER agraph
-WORKDIR /home/agraph
-COPY docker-entrypoint.sh /home/agraph/
+ADD AgensGraph-v1.2.0_linux.tar.gz /agens-graph/
 
-ENV AGDATA=/home/agraph/data \
-    PATH=/home/agraph/AgensGraph/bin:$PATH \
-    LD_LIBRARY_PATH=/home/agraph/AgensGraph/lib:$LD_LIBRARY_PATH
+ENV GOSU_VERSION=1.20 \
+    AGDATA=/agens-graph/data \
+    PATH=/agens-graph/AgensGraph/bin:$PATH \
+    LD_LIBRARY_PATH=/agens-graph/AgensGraph/lib:$LD_LIBRARY_PATH
 
-RUN initdb && ag_ctl -w start && createdb && agens -c 'CREATE GRAPH docker_graph' && ag_ctl stop 
+COPY agens-graph /agens-graph/AgensGraph/bin
+COPY docker-entrypoint.sh /
+
+RUN mkdir /docker-entrypoint-initdb.d && \
+    chmod +x docker-entrypoint.sh && \
+    chmod +x /agens-graph/AgensGraph/bin/agens-graph
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
 EXPOSE 5432
-
-ENTRYPOINT ["/home/agraph/docker-entrypoint.sh"]
+CMD ["agens-graph"]

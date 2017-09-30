@@ -3,13 +3,13 @@ MAINTAINER KingKwan <kmkim@bitnine.net>
 
 RUN apk update && \
     apk add --no-cache readline bison flex && \
-    adduser -D agraph && \
+    addgroup -S -g 9999 agraph && \
+    adduser -D -G agraph agraph && \
     rm -r  /var/cache/apk/* 
+
 
 COPY docker-entrypoint.sh /home/agraph/
 
-USER agraph
-WORKDIR /home/agraph/
 
 ENV AGDATA=/home/agraph/data \
     PATH=/home/agraph/agensgraph/bin:$PATH \
