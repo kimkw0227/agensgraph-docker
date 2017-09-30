@@ -18,7 +18,7 @@ ENV AGDATA=/home/agraph/data \
 	
 ADD agensgraph-alpine.tar.gz /home/agraph/
 
-RUN initdb && ag_ctl -w start && createdb && agens -c 'CREATE GRAPH docker_graph' && ag_ctl stop && chmod +x /home/agraph/entrypoint.sh
+RUN initdb && ag_ctl -w start && createdb && agens -c 'CREATE GRAPH docker_graph' && ag_ctl stop
 
 VOLUME ["/home/agraph/data"]
 
