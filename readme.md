@@ -16,7 +16,7 @@ Currently, the image with latest tag contains AgensGraph v.1.3.0 Community Versi
    => docker exec -it [YOUR.CONTAINER.NAME.HERE] agens -U agraph
 
 # Quick Reference
-* AgensGraph Quick Guide: http://bitnine.net/support/documents_backup/quick-start-guide-html/
+* AgensGraph Quick Guide: http://bitnine.net/support/documents_backup/quick-start-guide-html
 * Where to file issues: https://github.com/bitnine-oss/agensgraph/issues
 
 This image is for non-production usage only!(ex. testing or experiencing the AgensGraph)
